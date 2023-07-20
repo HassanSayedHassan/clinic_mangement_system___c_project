@@ -1,5 +1,41 @@
-#ifndef FUNCTIONS_BODY
-#define FUNCTIONS_BODY
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "STD_TYPES.h"
+#include "clinic.h"
+
+
+typedef struct Patient{             /// struct for all data of patient
+    char name[50];                  /// note for arranging element in descending order to overcome the problem of padding in memory
+    char reservationTime[20];
+    char gender[10];
+    int ID;
+    u8 age;
+}patient;
+
+patient* AllPatients;               /// pointer to dynamic array of allPatient
+/// Don't forger to initialize the pointer
+s16 currIndex=-1;                    /// index to count and access array elements
+
+char *availableAppointments[]={"2pm to 2:30pm","2:30pm to 3pm","3pm to 3:30pm","4pm to 4:30pm","4:30pm to 5pm"};
+
+
+
+/*Functions Of Admin mode*/
+void checkAdminModePass();
+void initializeAdminMode();
+void insertNewPatient();
+void updatePatient();
+void reserveWithDoctor();
+void cancelReservation();
+/*Functions Of user mode*/
+void initializeUserMode();
+void viewPatientRecord();
+void viewToDayReservations();
+/* Some Helper Functions*/
+void initializeSystem();
+s16 getIndexFromId(u16 id);
+s8 checkRepeatedId(u16 id);
 
 /*Functions Of Admin mode*/
 void checkAdminModePass()
@@ -92,7 +128,7 @@ void insertNewPatient()
         repeatedId:
         printf("\n\t Enter Patient Id: ");
         scanf("%d", &ID);
-    //    printf("Id of inserted %d \n",ID);
+        //    printf("Id of inserted %d \n",ID);
         /// Check if id is repeated;
         if (checkRepeatedId(ID))
         {
@@ -169,55 +205,55 @@ void reserveWithDoctor()
                 printf(" press [%d] to reserve at  %s \n", i + 1, availableAppointments[i]);
             }
         }
-            int app;
-            scanf("%d",&app);
-            switch (app) {
-                case 1:
-                    if(strcmp(availableAppointments[0], ""))
-                    {
-                        strcpy(AllPatients[index].reservationTime,availableAppointments[0]);
-                        availableAppointments[0]="";
-                        printf("\t Reserved Successfully\n");
-                    }
-                    break;
-                case 2:
-                    if(strcmp(availableAppointments[1], ""))
-                    {
-                        strcpy(AllPatients[index].reservationTime,availableAppointments[1]);
-                        availableAppointments[1]="";
-                        printf("\t Reserved Successfully\n");
-                    }
-                    break;
-                case 3:
-                    if(strcmp(availableAppointments[2], ""))
-                    {
-                        strcpy(AllPatients[index].reservationTime,availableAppointments[2]);
-                        availableAppointments[2]="";
-                        printf("\t Reserved Successfully\n");
-                    }
-                    break;
-                case 4:
-                    if(strcmp(availableAppointments[3], ""))
-                    {
-                        strcpy(AllPatients[index].reservationTime,availableAppointments[3]);
-                        availableAppointments[3]="";
-                        printf("\t Reserved Successfully\n");
-                    }
-                    break;
-                case 5:
-                    if(strcmp(availableAppointments[4], ""))
-                    {
-                        strcpy(AllPatients[index].reservationTime,availableAppointments[4]);
-                        availableAppointments[4]="";
-                        printf("\t Reserved Successfully\n");
-                    }
-                    break;
-                default:
-                    printf("\t\t \n Invalid chosse");
-                    printf("\tPress Any Key To Return :");
-                    scanf("%c",&stop);
-                    scanf("%c",&stop);
-                    initializeAdminMode();
+        int app;
+        scanf("%d",&app);
+        switch (app) {
+            case 1:
+                if(strcmp(availableAppointments[0], ""))
+                {
+                    strcpy(AllPatients[index].reservationTime,availableAppointments[0]);
+                    availableAppointments[0]="";
+                    printf("\t Reserved Successfully\n");
+                }
+                break;
+            case 2:
+                if(strcmp(availableAppointments[1], ""))
+                {
+                    strcpy(AllPatients[index].reservationTime,availableAppointments[1]);
+                    availableAppointments[1]="";
+                    printf("\t Reserved Successfully\n");
+                }
+                break;
+            case 3:
+                if(strcmp(availableAppointments[2], ""))
+                {
+                    strcpy(AllPatients[index].reservationTime,availableAppointments[2]);
+                    availableAppointments[2]="";
+                    printf("\t Reserved Successfully\n");
+                }
+                break;
+            case 4:
+                if(strcmp(availableAppointments[3], ""))
+                {
+                    strcpy(AllPatients[index].reservationTime,availableAppointments[3]);
+                    availableAppointments[3]="";
+                    printf("\t Reserved Successfully\n");
+                }
+                break;
+            case 5:
+                if(strcmp(availableAppointments[4], ""))
+                {
+                    strcpy(AllPatients[index].reservationTime,availableAppointments[4]);
+                    availableAppointments[4]="";
+                    printf("\t Reserved Successfully\n");
+                }
+                break;
+            default:
+                printf("\t\t \n Invalid chosse");
+                printf("\tPress Any Key To Return :");
+                scanf("%c",&stop);
+                scanf("%c",&stop);
+                initializeAdminMode();
 
         }
 
@@ -313,7 +349,7 @@ void initializeUserMode()
             viewPatientRecord();
             break;
         case 2:
-             viewToDayReservations();
+            viewToDayReservations();
             break;
 
         case 3:
@@ -375,7 +411,7 @@ void viewToDayReservations()
     char stop;
     for (int i =0; i<=currIndex;i++)
     {
-    //    printf("current %s \n",AllPatients[i].reservationTime);
+        //    printf("current %s \n",AllPatients[i].reservationTime);
         if (strcmp(AllPatients[i].reservationTime,""))
         {
             printf("Patient with id = %d has Reservation at %s \n",AllPatients[i].ID,AllPatients[i].reservationTime);
@@ -448,7 +484,3 @@ s8 checkRepeatedId(u16 id)
     }
     return  0;
 }
-
-
-
-#endif

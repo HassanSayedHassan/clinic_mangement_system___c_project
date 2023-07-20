@@ -1,5 +1,8 @@
-#ifndef FUNCTIONS_PROTOTYPES
-#define FUNCTIONS_PROTOTYPES
+
+#ifndef CLINIC_H
+#define CLINIC_H
+
+
 
 /*Functions Of Admin mode*/
 void checkAdminModePass();
@@ -16,4 +19,10 @@ void viewToDayReservations();
 void initializeSystem();
 s16 getIndexFromId(u16 id);
 s8 checkRepeatedId(u16 id);
+
+
+
+
 #endif
+
+
