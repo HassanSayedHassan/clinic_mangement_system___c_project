@@ -20,23 +20,6 @@ s16 currIndex=-1;                    /// index to count and access array element
 char *availableAppointments[]={"2pm to 2:30pm","2:30pm to 3pm","3pm to 3:30pm","4pm to 4:30pm","4:30pm to 5pm"};
 
 
-
-/*Functions Of Admin mode*/
-void checkAdminModePass();
-void initializeAdminMode();
-void insertNewPatient();
-void updatePatient();
-void reserveWithDoctor();
-void cancelReservation();
-/*Functions Of user mode*/
-void initializeUserMode();
-void viewPatientRecord();
-void viewToDayReservations();
-/* Some Helper Functions*/
-void initializeSystem();
-s16 getIndexFromId(u16 id);
-s8 checkRepeatedId(u16 id);
-
 /*Functions Of Admin mode*/
 void checkAdminModePass()
 {
